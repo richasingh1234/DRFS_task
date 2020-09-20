@@ -20,6 +20,12 @@ Route::group([
 
 ], function ($router) {
     Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
-    Route::post('/logoutt', [App\Http\Controllers\Api\AuthController::class, 'logoutt'])->name('logoutt');
-    Route::get('/state', [App\Http\Controllers\Api\StateController::class, 'state'])->name('state');
+    Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logout');
+    Route::get('/state', [App\Http\Controllers\Api\StateController::class, 'index'])->name('state');
+    Route::post('/add-state', [App\Http\Controllers\Api\StateController::class, 'store'])->name('add-state');
+    Route::get('/district', [App\Http\Controllers\Api\DistrictController::class, 'index'])->name('district');
+    Route::post('/add-district', [App\Http\Controllers\Api\DistrictController::class, 'store'])->name('add-district');
+    Route::get('/child', [App\Http\Controllers\Api\ChildController::class, 'index'])->name('child');
+    Route::post('/add-child', [App\Http\Controllers\Api\ChildController::class, 'store'])->name('add-child');
+
 });
