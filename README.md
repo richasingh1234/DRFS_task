@@ -1,6 +1,6 @@
 Steps to setup the project.
  
-1) Make sure you have php 7.4 or above in your local machine
+1) Make sure you have php 7.1 or above in your local machine
 2) Download/Clone the code 
 3) then goto the directory through command prompt
 4) run the commant "composer update"
