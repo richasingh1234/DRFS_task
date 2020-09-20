@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\District;
+use App\Models\State;
+use App\Models\Child;
+use DB;
 
 class ChildController extends Controller
 {
@@ -14,7 +18,8 @@ class ChildController extends Controller
      */
     public function index()
     {
-      return view('backend.child.index');
+      $child = Child::orderBy('name', 'asc')->get();
+      return view('backend.child.index', ['child' => $child]);
     }
 
     /**
@@ -24,7 +29,9 @@ class ChildController extends Controller
      */
     public function create()
     {
-        return view('backend.child.create');
+        $state = State::orderBy('name', 'asc')->select('name', 'id')->get();
+        $district = District::orderBy('name', 'asc')->select('name', 'id')->get();
+        return view('backend.child.create', ['state' => $state,'district' => $district]);
     }
 
     /**
@@ -35,7 +42,35 @@ class ChildController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        DB::beginTransaction();
+        try {
+
+            $exist = Child::where('name', $request->district)->first();
+
+            if (!empty($exist->id)) {
+                $id = $exist->id;
+            } else {
+                $id = null;
+            }
+
+            $child = Child::updatecreate($request, $id);
+            DB::commit();
+
+            $success = true;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $success = false;
+            \Log::debug("about: " . $e->getMessage());
+        }
+
+        if ($success) {
+            $request->session()->flash('success', 'Child added successfully');
+            return redirect()->back();
+        } else {
+            \Session::flash('warning', 'Unable to process request.Error');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -46,7 +81,8 @@ class ChildController extends Controller
      */
     public function show($id)
     {
-        return view('backend.child.show');
+        $child = Child::orderBy('name', 'asc')->where('id',$id)->first();
+        return view('backend.child.show', ['child' => $child]);
     }
 
     /**

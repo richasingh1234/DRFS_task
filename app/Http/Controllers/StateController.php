@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\State;
+use DB;
 
-class StateController extends Controller
-{
+class StateController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $state = State::orderBy('name', 'asc')->select('name', 'id')->get();
+        //dd($state);
+        return view('backend.state.index', ['state' => $state]);
     }
 
     /**
@@ -21,9 +24,8 @@ class StateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-       return view('backend.state.create');
+    public function create() {
+        
     }
 
     /**
@@ -32,9 +34,36 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+
+        DB::beginTransaction();
+        try {
+
+            $exist = State::where('name', $request->state)->first();
+
+            if (!empty($exist->id)) {
+                $id = $exist->id;
+            } else {
+                $id = null;
+            }
+
+            $State = State::updatecreate($request, $id);
+            DB::commit();
+
+            $success = true;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $success = false;
+            \Log::debug("about: " . $e->getMessage());
+        }
+
+        if ($success) {
+            $request->session()->flash('success', 'State added successfully');
+            return redirect()->back();
+        } else {
+            \Session::flash('warning', 'Unable to process request.Error');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -43,8 +72,7 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -54,8 +82,7 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -66,8 +93,7 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -77,8 +103,8 @@ class StateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }

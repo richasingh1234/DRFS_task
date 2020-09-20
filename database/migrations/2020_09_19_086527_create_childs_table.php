@@ -19,6 +19,7 @@ class CreateChildsTable extends Migration
             $table->string('name');
             $table->string('motherName');
             $table->string('fatherName');
+            $table->string('profileImage');
             $table->enum('sex', array('Male', 'Female', 'Other'))->default('Male');
             $table->date('dateOfBirth');
             $table->unsignedInteger('createdBy');

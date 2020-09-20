@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\DropdownController;
 
 
 /*
@@ -19,7 +20,7 @@ use App\Http\Controllers\DistrictController;
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware('auth');
+});
 
 
 
@@ -28,13 +29,26 @@ Auth::routes();
 
 
  
-Route::resource('/child', ChildController::class)->middleware('auth');
+//Route::resource('/child', ChildController::class)->middleware('auth');
+//
+//Route::resource('/state', StateController::class)->middleware('auth');
+//
+//Route::resource('/district', DistrictController::class)->middleware('auth');
 
-Route::resource('/state', StateController::class)->middleware('auth');
+Route::resources([
+    'child' => ChildController::class,
+    'state' => StateController::class,
+    'district' => DistrictController::class,
+]);
 
-Route::resource('/district', DistrictController::class)->middleware('auth');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+
+Route::get('dropdownlist','DropdownController@index');
+
+Route::get('get-District-list',[DropdownController::class, 'getDistrictList']);
+
 

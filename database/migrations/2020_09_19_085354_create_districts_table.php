@@ -19,6 +19,8 @@ class CreateDistrictsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('state_id');
             $table->foreign('state_id')->references('id')->on('states')->nullable()->constrained();
+            $table->unsignedInteger('createdBy');
+            $table->foreign('createdBy')->references('id')->on('users')->nullable()->constrained();
         });
     }
 

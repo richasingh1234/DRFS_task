@@ -16,6 +16,8 @@ class CreateStatesTable extends Migration
         Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->unsignedInteger('createdBy');
+            $table->foreign('createdBy')->references('id')->on('users')->nullable()->constrained();
             $table->string('name');
         });
     }

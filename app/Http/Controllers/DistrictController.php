@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\District;
+use App\Models\State;
+use DB;
 
 use App\Http\Controllers\Controller;
 
@@ -25,7 +28,9 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        return view('backend.district.create');
+        $state = State::orderBy('name', 'asc')->select('name', 'id')->get();
+        $district = District::orderBy('name', 'asc')->select('name', 'id')->get();
+        return view('backend.district.create', ['state' => $state,'district' => $district]);
     }
 
     /**
@@ -36,7 +41,34 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            $exist = District::where('name', $request->district)->first();
+
+            if (!empty($exist->id)) {
+                $id = $exist->id;
+            } else {
+                $id = null;
+            }
+
+            $District = District::updatecreate($request, $id);
+            DB::commit();
+
+            $success = true;
+        } catch (\Exception $e) {
+            DB::rollback();
+            $success = false;
+            \Log::debug("about: " . $e->getMessage());
+        }
+
+        if ($success) {
+            $request->session()->flash('success', 'District added successfully');
+            return redirect()->back();
+        } else {
+            \Session::flash('warning', 'Unable to process request.Error');
+            return redirect()->back();
+        }
     }
 
     /**
