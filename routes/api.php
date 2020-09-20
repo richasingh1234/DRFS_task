@@ -19,8 +19,8 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logout');
+    Route::post('/loginn', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('loginn');
+    Route::post('/logoutt', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logoutt');
     Route::get('/state', [App\Http\Controllers\Api\StateController::class, 'index'])->name('state');
     Route::post('/add-state', [App\Http\Controllers\Api\StateController::class, 'store'])->name('add-state');
     Route::get('/district', [App\Http\Controllers\Api\DistrictController::class, 'index'])->name('district');

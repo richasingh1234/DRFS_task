@@ -8,7 +8,7 @@
              <a href="{{route('child.index')}}"><i class="fa fa-arrow-left text-success"></i></a>
            </div>
            <div class="col-sm-8 pt-5">
-               <img src="{{ asset('assets/web_images/banner.jpeg') }}" class="rounded-circle mx-auto" width="100px" height="100px">
+               <img src="{{ url('storage/app/'.$child->profileImage) }}" class="rounded-circle mx-auto" width="100px" height="100px">
            </div>
            <div class="col-sm-3"></div>
          </div>
