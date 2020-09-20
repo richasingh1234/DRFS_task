@@ -4,6 +4,11 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-sm-12 text-right">
+            @if(Session::has('message'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+        </div>
         <div class="col-sm-4"></div>
         <div class="col-sm-4">
             <div class="card">

@@ -60,9 +60,11 @@ class Child extends Model {
 
         if ($success) {
             $store = $childs->save();
-            return true;
+            return $success;
         } else {
-            \Session::flash('error', 'Unable to process request.Error:' . json_encode($e->getMessage(), true));
+//            \Session::flash('error', 'Unable to process request.Error:' . json_encode($e->getMessage(), true));
+            $request->session()->flash('message', 'Unable to process request.Error:' . json_encode($e->getMessage(), true)); 
+            $request->session()->flash('alert-class', 'alert-success'); 
             return redirect()->back();
         }
     }

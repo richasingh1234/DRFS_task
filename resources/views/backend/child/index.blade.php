@@ -7,6 +7,11 @@
         <div class="col-sm-12 text-right">
             <a href="{{route('child.create')}}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Child</a>
         </div>
+        <div class="col-sm-12 text-right">
+            @if(Session::has('message'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+        </div>
     </div>
     <br>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">

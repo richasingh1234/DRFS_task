@@ -65,10 +65,13 @@ class ChildController extends Controller
         }
 
         if ($success) {
-            $request->session()->flash('success', 'Child added successfully');
-            return redirect()->back();
+            $request->session()->flash('message', 'Child added successfully'); 
+            $request->session()->flash('alert-class', 'alert-success'); 
+            return redirect('child.index');
         } else {
             \Session::flash('warning', 'Unable to process request.Error');
+            $request->session()->flash('message', 'Unable to process request.Error');
+            $request->session()->flash('alert-class', 'alert-danger'); 
             return redirect()->back();
         }
     }

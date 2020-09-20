@@ -4,6 +4,11 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-sm-12 text-right">
+            @if(Session::has('message'))
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+        </div>
         <div class="col-md-4 p-3">
             <div class="d-flex d flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
                 <div class="col-md-4">

@@ -58,10 +58,12 @@ class StateController extends Controller {
         }
 
         if ($success) {
-            $request->session()->flash('success', 'State added successfully');
+            $request->session()->flash('message', 'State added successfully'); 
+            $request->session()->flash('alert-class', 'alert-success'); 
             return redirect()->back();
         } else {
-            \Session::flash('warning', 'Unable to process request.Error');
+            $request->session()->flash('message', 'Unable to process request.Error');
+            $request->session()->flash('alert-class', 'alert-danger');
             return redirect()->back();
         }
     }
