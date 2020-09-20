@@ -7,7 +7,7 @@
         <div class="col-sm-12 text-right">
             <a href="{{route('child.create')}}" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> Add Child</a>
         </div>
-        <div class="col-sm-12 text-right">
+        <div class="col-sm-12 text-center pt-2">
             @if(Session::has('message'))
             <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif

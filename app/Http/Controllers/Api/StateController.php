@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\User;
-class AuthController extends Controller
+class StateController extends Controller
 {
      /**
      * Create a new AuthController instance.
@@ -51,7 +51,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function logoutt() {
+    public function logout() {
         auth()->logout();
 
         return response()->json([

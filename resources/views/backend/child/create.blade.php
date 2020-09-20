@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 text-right">
+        <div class="col-sm-12 text-center">
             @if(Session::has('message'))
             <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif

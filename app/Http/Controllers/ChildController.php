@@ -57,7 +57,7 @@ class ChildController extends Controller
             $child = Child::updatecreate($request, $id);
             DB::commit();
 
-            $success = true;
+            $success = $child;
         } catch (\Exception $e) {
             DB::rollback();
             $success = false;
@@ -67,9 +67,8 @@ class ChildController extends Controller
         if ($success) {
             $request->session()->flash('message', 'Child added successfully'); 
             $request->session()->flash('alert-class', 'alert-success'); 
-            return redirect('child.index');
+            return redirect('child');
         } else {
-            \Session::flash('warning', 'Unable to process request.Error');
             $request->session()->flash('message', 'Unable to process request.Error');
             $request->session()->flash('alert-class', 'alert-danger'); 
             return redirect()->back();

@@ -20,6 +20,6 @@ Route::group([
 
 ], function ($router) {
     Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logout');
+    Route::post('/logoutt', [App\Http\Controllers\Api\AuthController::class, 'logoutt'])->name('logoutt');
     Route::get('/state', [App\Http\Controllers\Api\StateController::class, 'state'])->name('state');
 });

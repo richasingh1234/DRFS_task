@@ -45,7 +45,7 @@
                     <img src="{{ asset('assets/web_images/logo.png') }}" class="rounded-circle mx-auto" width="50px">
                 </h5>
                 <nav class="my-2 my-md-0 mr-md-3">
-                    <a class="p-2 text-dark" href="{{ route('child.index') }}"><i class="fa fa-home"></i> Home</a>
+                    <a class="p-2 text-dark" href="{{ route('dashboard') }}"><i class="fa fa-home"></i> Home</a>
                     <a class="p-2 text-dark" href="{{ route('state.index') }}">State</a>
                     <a class="p-2 text-dark" href="{{ route('district.create') }}">District</a>
                     <a class="p-2 text-dark" href="{{ route('child.index') }}" >Child</a>
@@ -67,7 +67,9 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-                </a>
+               
+                
+                
 
                 @endguest
             </div>

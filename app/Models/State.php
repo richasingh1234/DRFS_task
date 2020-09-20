@@ -39,10 +39,11 @@ class State extends Model
 
         if ($success) {
             $store = $state->save();
-            return true;
+            return $success;
         } else {
-            \Session::flash('error', 'Unable to process request.Error:' . json_encode($e->getMessage(), true));
-            return redirect()->back();
+//            \Session::flash('error', 'Unable to process request.Error:' . json_encode($e->getMessage(), true));
+//            return redirect()->back();
+            return $success;
         }
     }
     
