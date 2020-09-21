@@ -19,7 +19,7 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('/loginn', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('loginn');
+    Route::post('/loginn', [App\Http\Controllers\Api\AuthController::class, 'loginn'])->name('loginn');
     Route::post('/logoutt', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logoutt');
     Route::get('/state', [App\Http\Controllers\Api\StateController::class, 'index'])->name('state');
     Route::post('/add-state', [App\Http\Controllers\Api\StateController::class, 'store'])->name('add-state');

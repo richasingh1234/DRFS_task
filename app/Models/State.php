@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-//use App\Models\District;
+use App\Models\District;
+use App\Models\Child;
 use DB;
 
 class State extends Model
@@ -45,6 +46,16 @@ class State extends Model
 //            return redirect()->back();
             return $success;
         }
+    }
+    
+    public function district()
+    {
+      return $this->hasMany(District::class);
+    }  
+    
+    public function child()
+    {
+      return $this->belongsTo(Child::class);
     }
     
     

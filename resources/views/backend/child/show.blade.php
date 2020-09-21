@@ -8,7 +8,7 @@
              <a href="{{route('child.index')}}"><i class="fa fa-arrow-left text-success"></i></a>
            </div>
            <div class="col-sm-8 pt-5">
-               <img src="{{ url('storage/app/'.$child->profileImage) }}" class="rounded-circle mx-auto" width="100px" height="100px">
+               <img src="{{ asset('storage/app/'.$child->profileImage) }}" class="rounded-circle mx-auto" width="100px" height="100px">
            </div>
            <div class="col-sm-3"></div>
          </div>
@@ -31,12 +31,12 @@
               <b>Mother's Name:</b> <p>{{$child->motherName}}</p>
            </div>
            <div class="col-sm-4">
-              <b>State:</b> <p>Uttar Pradesh</p>
+              <b>State:</b> <p>{{$child->state->name}}</p>
            </div>
          </div>
           <div class="row">
            <div class="col-sm-4">
-            <b>District:</b> <p>Gorakhpur</p>
+            <b>District:</b> <p>{{$child->district->name}}</p>
            </div>
            <div class="col-sm-4">
              

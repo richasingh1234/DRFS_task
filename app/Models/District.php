@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\User;
-//use App\Model\State;
+use App\Model\State;
+use App\Models\Child;
 use DB;
 
 class District extends Model
@@ -50,6 +51,16 @@ class District extends Model
     public function hasCreated()
     {
         return $this->belongsTo(User::class, 'createdBy');
+    }
+    
+    public function state()
+    {
+      return $this->belongsTo(State::class);
+    }
+    
+    public function child()
+    {
+      return $this->belongsTo(Child::class);
     }
     
    

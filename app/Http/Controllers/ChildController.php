@@ -18,7 +18,7 @@ class ChildController extends Controller
      */
     public function index()
     {
-      $child = Child::orderBy('name', 'asc')->get();
+      $child = Child::with('district','state','user')->orderBy('name', 'asc')->get();
       return view('backend.child.index', ['child' => $child]);
     }
 

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\District;
+use App\Models\State;
 
 class Child extends Model {
 
@@ -26,7 +28,7 @@ class Child extends Model {
             }
 
             if ($request->hasFile('profileImage')) {
-                $allowedfileExtension = ['pdf', 'docx'];
+                $allowedfileExtension = ['png', 'jpeg','jpg'];
                 $files = $request->file('profileImage');
 
                 $filename = $files->getClientOriginalName();
@@ -54,6 +56,7 @@ class Child extends Model {
             DB::commit();
             $success = true;
         } catch (\Exception $e) {
+            
             DB::rollback();
             $success = false;
         }
@@ -70,8 +73,18 @@ class Child extends Model {
         }
     }
 
-    public function hasCreated() {
+    public function user() {
         return $this->belongsTo(User::class, 'createdBy');
+    }
+    
+    public function district()
+    {
+      return $this->belongsTo(District::class);
+    }  
+    
+    public function state()
+    {
+      return $this->belongsTo(State::class);
     }
 
 }

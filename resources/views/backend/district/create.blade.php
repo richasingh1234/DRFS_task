@@ -16,7 +16,7 @@
                 </div>        
                 <form method="POST" action="{{route('district.store')}}">
                     @csrf
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <select class="form-control" name="state">
                                 <option value="">Select State Name</option>
@@ -43,7 +43,7 @@
                     <span class="solid"><string class="ml-3 text-success"><i class="fa fa-plus"></i></string></span>
                 </div>             
                 <div class="col-md-6">   
-                    <b class="text-success">Kanpur</b>
+                    <b class="text-success">{{$districts->name}}</b>
                     <p class="text-success">{{$districts->name}}</p>
                 </div>
                 <div class="col-md-2"> 

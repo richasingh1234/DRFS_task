@@ -37,8 +37,8 @@
                         <td>{{$childs->dateOfBirth}}</td>
                         <td>{{$childs->motherName}}</td>
                         <td>{{$childs->fatherName}}</td>
-                        <td>Uttar Pradesh</td>
-                        <td>Mau</td>
+                        <td>{{$childs->state->name}}</td>
+                        <td>{{$childs->district->name}}</td>
                         <td><a href="{{route('child.show',$childs->id)}}" class="btn btn-outline-success">View</a></td>
                     </tr>
                     @endforeach
