@@ -26,9 +26,11 @@ class Child extends Model {
             } else {
                 $childs = self::find($id);
             }
+            
+            
 
             if ($request->hasFile('profileImage')) {
-                $allowedfileExtension = ['png', 'jpeg','jpg'];
+                $allowedfileExtension = ['png', 'jpeg','jpg','PNG'];
                 $files = $request->file('profileImage');
 
                 $filename = $files->getClientOriginalName();

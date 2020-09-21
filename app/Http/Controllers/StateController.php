@@ -43,8 +43,10 @@ class StateController extends Controller {
 
             if (!empty($exist->id)) {
                 $id = $exist->id;
+                $mess='updated';
             } else {
                 $id = null;
+                $mess='added';
             }
 
             $State = State::updatecreate($request, $id);
@@ -58,7 +60,7 @@ class StateController extends Controller {
         }
 
         if ($success) {
-            $request->session()->flash('message', 'State added successfully'); 
+            $request->session()->flash('message', 'State '.$mess.' successfully'); 
             $request->session()->flash('alert-class', 'alert-success'); 
             return redirect()->back();
         } else {

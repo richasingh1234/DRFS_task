@@ -48,8 +48,10 @@ class DistrictController extends Controller
 
             if (!empty($exist->id)) {
                 $id = $exist->id;
+                $mess='updated';
             } else {
                 $id = null;
+                $mess='added';
             }
 
             $District = District::updatecreate($request, $id);
@@ -63,7 +65,7 @@ class DistrictController extends Controller
         }
 
         if ($success) {
-            $request->session()->flash('message', 'District added successfully'); 
+            $request->session()->flash('message', 'District '.$mess.' successfully'); 
             $request->session()->flash('alert-class', 'alert-success'); 
             return redirect()->back();
         } else {

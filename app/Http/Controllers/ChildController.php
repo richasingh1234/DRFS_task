@@ -46,12 +46,14 @@ class ChildController extends Controller
         DB::beginTransaction();
         try {
 
-            $exist = Child::where('name', $request->district)->first();
+            $exist = Child::where('name', $request->child)->first();
 
             if (!empty($exist->id)) {
                 $id = $exist->id;
+                $mess='updated';
             } else {
                 $id = null;
+                $mess='added';
             }
 
             $child = Child::updatecreate($request, $id);
@@ -65,7 +67,7 @@ class ChildController extends Controller
         }
 
         if ($success) {
-            $request->session()->flash('message', 'Child added successfully'); 
+            $request->session()->flash('message', 'Child '.$mess.' successfully'); 
             $request->session()->flash('alert-class', 'alert-success'); 
             return redirect('child');
         } else {
