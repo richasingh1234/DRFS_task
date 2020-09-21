@@ -49,12 +49,22 @@ class ChildController extends Controller
             ], 400);
         }
 
-        if(request()->hasFile('profileImage')) {
-            $imageName = $request->profileImage. '_' . time() . '.' . request()->profileImage->getClientOriginalExtension();
-            $request->profileImage->storeAs('public/profileImage', $imageName);
-        }else{
-            $imageName='default.png';
-        }
+        if ($request->hasFile('profileImage')) {
+                $allowedfileExtension = ['png', 'jpeg','jpg','PNG'];
+                $files = $request->file('profileImage');
+
+                $filename = $files->getClientOriginalName();
+                $extension = $files->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+
+                if($check) 
+                {
+                    $imageName = $filename. '_' . time() . '.' . request()->profileImage->getClientOriginalExtension();
+                               
+
+            $request->file('profileImage')->storeAs('public/profileImage', $imageName);
+                }
+            }
 
         $data = [
             'name' => $request->name,

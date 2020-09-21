@@ -33,7 +33,7 @@ class AuthController extends Controller {
             return response()->json($validator->errors(), 422);
         }
 
-        if (!$token = auth()->attempt($validator->validated())) {
+        if (!$token = auth('api')->attempt($validator->validated())) {
             return response()->json([
                         'status' => 'false',
                         'message' => 'Invalid login details...!',
@@ -46,11 +46,11 @@ class AuthController extends Controller {
     }
 
     public function me() {
-        return response()->json(auth()->user());
+        return response()->json(auth('api')->user());
     }
 
     public function refresh() {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(auth('api')->refresh());
     }
 
     /**
@@ -59,7 +59,7 @@ class AuthController extends Controller {
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout() {
-        auth()->logout();
+        auth('api')->logout();
 
         return response()->json([
                     'status' => 'true',
@@ -81,8 +81,8 @@ class AuthController extends Controller {
         return response()->json([
                     'access_token' => $token,
                     'token_type' => 'bearer',
-                    'expires_in' => auth()->factory()->getTTL() * 60,
-                    'user' => auth()->user()
+                    'expires_in' => auth('api')->factory()->getTTL() * 60,
+                    'user' => auth('api')->user()
         ]);
     }
 

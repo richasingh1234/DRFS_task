@@ -29,7 +29,7 @@ class DistrictController extends Controller
     public function create()
     {
         $state = State::orderBy('name', 'asc')->select('name', 'id')->get();
-        $district = District::orderBy('name', 'asc')->get();
+        $district = District::with('state')->orderBy('name', 'asc')->get();
         return view('backend.district.create', ['state' => $state,'district' => $district]);
     }
 

@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Model\User;
-use App\Model\State;
+use App\Models\User;
+use App\Models\State;
 use App\Models\Child;
 use DB;
 

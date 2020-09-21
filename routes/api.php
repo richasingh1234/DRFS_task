@@ -29,3 +29,14 @@ Route::group([
     Route::post('/add-child', [App\Http\Controllers\Api\ChildController::class, 'store'])->name('add-child');
 
 });
+
+
+Route::post('/loginnnn', [App\Http\Controllers\UserController::class, 'authenticate'])->name('loginnnn');
+//Route::post('register', 'UserController@register');
+//    Route::post('loginnnn', 'UserController@authenticate');
+//    Route::get('open', 'DataController@open');
+//
+//    Route::group(['middleware' => ['jwt.verify']], function() {
+//        Route::get('user', 'UserController@getAuthenticatedUser');
+//        Route::get('closed', 'DataController@closed');
+//    });

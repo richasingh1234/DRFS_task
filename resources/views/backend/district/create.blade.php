@@ -43,7 +43,7 @@
                     <span class="solid"><string class="ml-3 text-success"><i class="fa fa-plus"></i></string></span>
                 </div>             
                 <div class="col-md-6">   
-                    <b class="text-success">{{$districts->name}}</b>
+                    <b class="text-success">{{$districts->state->name}}</b>
                     <p class="text-success">{{$districts->name}}</p>
                 </div>
                 <div class="col-md-2"> 

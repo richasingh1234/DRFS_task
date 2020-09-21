@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\District;
 use App\Models\State;
+use Storage;
 
 class Child extends Model {
 
@@ -17,6 +18,7 @@ class Child extends Model {
     public $timestamps = false;
 
     protected function updatecreate($request, $id = NULL) {
+        //dd($request);
 
         DB::begintransaction();
 
@@ -26,7 +28,6 @@ class Child extends Model {
             } else {
                 $childs = self::find($id);
             }
-            
             
 
             if ($request->hasFile('profileImage')) {
@@ -39,10 +40,12 @@ class Child extends Model {
 
                 if($check) 
                 {
-                    $filenames = $files->store('profileImage');
+                    $imageName = $filename. '_' . time() . '.' . request()->profileImage->getClientOriginalExtension();
+                               
+
+            $request->file('profileImage')->storeAs('public/profileImage', $imageName);
                 }
             }
-
 
             $childs->createdBy = auth()->user()->id;
             $childs->name = $request->child;
@@ -52,9 +55,10 @@ class Child extends Model {
             $childs->motherName = $request->mothername;
             $childs->fatherName = $request->fathername;
             $childs->dateOfBirth = $request->dob;
-            $childs->profileImage = $filenames;
+            $childs->profileImage = $imageName;
             $childs->created_at = now();
             $childs->updated_at = Null;
+            
             DB::commit();
             $success = true;
         } catch (\Exception $e) {
