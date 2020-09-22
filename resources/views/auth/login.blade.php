@@ -19,7 +19,7 @@
             <div class="col-3"></div>
             <div class="col-5">
               <div class="text-center"> 
-               <img src="{{ asset('assets/web_images/logo.png') }}" class="rounded-circle mx-auto" width="200px">
+               <img src="{{ asset('assets/web_images/logo_pro.png') }}" class="rounded-circle mx-auto" width="200px">
               </div>
             </div>
             <div class="col-4"></div>

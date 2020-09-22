@@ -6,6 +6,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 
 
 /*

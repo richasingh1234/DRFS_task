@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
+<style>
+    .error{
+        color:red;
+    }
+</style>    
+    
 <div class="container">
     <div class="row">
         <div class="col-sm-12 text-center">
@@ -25,23 +30,38 @@
                         </div><hr>
 
                         <div class="form-group">
-                            <input type="text" name="child" class="form-control" placeholder="Name">
+                            <input type="text" name="child" value="{{ old('child') }}" class="form-control" placeholder="Name">
+                            @if ($errors->has('child'))
+                            <label for="child" class="error">{{ $errors->first('child') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="sex">
                                 <option value="">Sex</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="Male" {{ old('sex') == 'Male' ? 'selected' : '' }}>Male</option>
+                                <option value="Female" {{ old('sex') == 'Female' ? 'selected' : '' }}>Female</option>
                             </select>
+                            @if ($errors->has('sex'))
+                            <label for="sex" class="error">{{ $errors->first('sex') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
-                            <input type="date" name="dob" class="form-control" placeholder="Date of Birth">
+                            <input type="date" name="dob" class="form-control" placeholder="Date of Birth" value="{{ old('dob') }}">
+                            @if ($errors->has('dob'))
+                            <label for="dob" class="error">{{ $errors->first('dob') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
-                            <input type="text" name="fathername" class="form-control" placeholder="Father's name">
+                            <input type="text" name="fathername" class="form-control" placeholder="Father's name" value="{{ old('fathername') }}">
+                            @if ($errors->has('fathername'))
+                            <label for="child" class="error">{{ $errors->first('fathername') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
-                            <input type="text" name="mothername" class="form-control" placeholder="Mother's name">
+                            <input type="text" name="mothername" class="form-control" placeholder="Mother's name" value="{{ old('mothername') }}">
+                            @if ($errors->has('mothername'))
+                            <label for="mothername" class="error">{{ $errors->first('mothername') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="state" id="state">
@@ -51,6 +71,9 @@
                                 @endforeach
 
                             </select>
+                            @if ($errors->has('state'))
+                            <label for="state" class="error">{{ $errors->first('state') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
                             <select class="form-control" name="district" id="district">
@@ -58,9 +81,15 @@
 
 
                             </select>
+                            @if ($errors->has('district'))
+                            <label for="district" class="error">{{ $errors->first('district') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
-                            <input type="file" name="profileImage" class="form-control">
+                            <input type="file" name="profileImage" class="form-control" value="{{ old('profileImage') }}">
+                            @if ($errors->has('profileImage'))
+                            <label for="profileImage" class="error">{{ $errors->first('profileImage') }}</label> 
+                            @endif
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" value="Submit" class="btn btn-block btn-sm btn-success">

@@ -32,11 +32,15 @@ Route::group([
 
 
 Route::post('/loginnnn', [App\Http\Controllers\UserController::class, 'authenticate'])->name('loginnnn');
-//Route::post('register', 'UserController@register');
-//    Route::post('loginnnn', 'UserController@authenticate');
-//    Route::get('open', 'DataController@open');
-//
-//    Route::group(['middleware' => ['jwt.verify']], function() {
-//        Route::get('user', 'UserController@getAuthenticatedUser');
-//        Route::get('closed', 'DataController@closed');
-//    });
+Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
+Route::post('/open', [App\Http\Controllers\DataController::class, 'open'])->name('open');
+   
+   
+
+    Route::group(['middleware' => ['jwt.verify']], function() {
+        
+        Route::post('/user', [App\Http\Controllers\UserController::class, 'getAuthenticatedUser'])->name('user');
+        Route::post('/closed', [App\Http\Controllers\DataController::class, 'closed'])->name('closed');
+
+        
+    });
