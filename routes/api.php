@@ -32,7 +32,7 @@ Route::group([
 
 
 Route::post('/loginnnn', [App\Http\Controllers\UserController::class, 'authenticate'])->name('loginnnn');
-Route::post('/register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
+Route::post('/registerr', [App\Http\Controllers\UserController::class, 'register'])->name('registerr');
 Route::post('/open', [App\Http\Controllers\DataController::class, 'open'])->name('open');
    
    

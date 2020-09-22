@@ -53,8 +53,8 @@
               <button type="submit" class="btn btn-block btn-success">Submit</button>
               
                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Register') }}
                                     </a>
                                 @endif
              </form>

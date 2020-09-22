@@ -20,7 +20,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/',[LoginController::class, 'showLoginForm']);
+Route::get('/',[HomeController::class, 'index']);
 
 
 
